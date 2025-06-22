@@ -40,11 +40,12 @@ public class WeatherService {
                 throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "[BŁĄD] Błędna odpowiedź API w getSevenDayForecast");
             }
 
+            // Pobieranie danych dziennych
             Map<String, List<Object>> dailyForecast = (Map<String, List<Object>>) response.get("daily");
             if (dailyForecast == null) {
                 throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "[BŁĄD] 'daily' w getSevenDayForecast jest puste");
             }
-
+            
             List<Object> dates = dailyForecast.get("time");
             List<Object> maxTemps = dailyForecast.get("temperature_2m_max");
             List<Object> minTemps = dailyForecast.get("temperature_2m_min");
@@ -112,7 +113,6 @@ public class WeatherService {
                 throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "[BŁĄD] 'hourly' w getWeekSummary jest puste");
             }
 
-            //Pobieranie reszty danych
             List<Object> weatherCodes = dailyForecast.get("weathercode");
             List<Object> maxTemps = dailyForecast.get("temperature_2m_max");
             List<Object> minTemps = dailyForecast.get("temperature_2m_min");
@@ -144,7 +144,7 @@ public class WeatherService {
                 }
             }
 
-            // Liczenie średniego ciśnienia z godzinowych danych
+            // Liczenie sumy ciśnienia przez cały tydzień w celu wliczenia średniej
             for (Object val : pressure) {
                 sumPressure += ((double) val);
             }
