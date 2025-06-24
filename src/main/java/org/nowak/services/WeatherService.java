@@ -127,7 +127,7 @@ public class WeatherService {
             double minTemp = Double.MAX_VALUE;
             double maxTemp = Double.MIN_VALUE;
 
-            // Liczenie średnich z danych dziennych
+        
             for (int i = 0; i < weatherCodes.size(); i++) {
                 int weatherCode = (int) weatherCodes.get(i);
                 double max = (double) maxTemps.get(i);
@@ -144,7 +144,7 @@ public class WeatherService {
                 }
             }
 
-            // Liczenie sumy ciśnienia przez cały tydzień w celu wliczenia średniej
+            // Liczenie sumy ciśnienia
             for (Object val : pressure) {
                 sumPressure += ((double) val);
             }
