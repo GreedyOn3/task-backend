@@ -125,7 +125,7 @@ public class WeatherService {
             double sumPressure = 0;
             double sumSunshineHours = 0;
             double minTemp = Double.MAX_VALUE;
-            double maxTemp = Double.MIN_VALUE;
+            double maxTemp = -Double.MAX_VALUE;
 
         
             for (int i = 0; i < weatherCodes.size(); i++) {
