@@ -152,7 +152,16 @@ public class WeatherService {
             double avgPressure = (double) Math.round((sumPressure / pressure.size()) * 100) /100;
             double avgSunshineHours = (double) Math.round((sumSunshineHours / sunshineDuration.size() * 100)) /100;
 
-            String summary = precipitationDaysCount > 3 ? "Tydzień w większości z opadami" : "Tydzień w większości bez opadów";
+            String summary;
+            if (precipitationDaysCount == 7) {
+                summary = "Tydzień w całości z opadami";
+            } else if (precipitationDaysCount > 3) {
+                summary = "Tydzień w większości z opadami";
+            } else if (precipitationDaysCount == 0) {
+                summary = "Tydzień bez opadów";
+            } else {
+                summary = "Tydzień w większości bez opadów";
+            }
 
             return new WeekSummary(avgPressure, avgSunshineHours, maxTemp, minTemp, summary);
 
